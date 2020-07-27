@@ -1,5 +1,5 @@
-import React, {useState, useRef} from 'react';
-import {View, TextInput, StyleSheet} from 'react-native';
+import React, { useState, useRef } from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 
 const AppConfirmCodeInput = (props) => {
   const {
@@ -7,13 +7,13 @@ const AppConfirmCodeInput = (props) => {
     textInputStyle,
     wrapperStyle,
     autoFocus,
-    activeColor,
     codeInputLength,
     onCodeChange,
     secureTextEntry,
+    onDone,
   } = props;
 
-  const [codeArr, setCodeArr] = useState(new Array(codeLength).fill(''));
+  const [codeArr, setCodeArr] = useState(new Array(codeLength).fill(""));
   const currentIndex = useRef(0);
   const codeInputRefs = useRef([]);
 
@@ -29,10 +29,12 @@ const AppConfirmCodeInput = (props) => {
     currentIndex.current = index;
     let newCodeArr = [...codeArr];
     newCodeArr[index] = text;
+    onCodeChange && onCodeChange(newCodeArr.join(""));
 
     if (index == codeLength - 1) {
       if (newCodeArr[index].length === codeInputLength) {
         blur(index);
+        onDone && onDone();
       }
     } else {
       if (newCodeArr[index].length < codeInputLength) {
@@ -41,12 +43,12 @@ const AppConfirmCodeInput = (props) => {
         setFocus(index + 1);
       }
     }
-    onCodeChange && onCodeChange(newCodeArr.join(''));
+
     setCodeArr(newCodeArr);
   };
 
   const checkBackspace = (index, nativeEvent) => {
-    if (nativeEvent.key === 'Backspace') {
+    if (nativeEvent.key === "Backspace") {
       if (codeArr[index].length === 0 && index > 0) {
         setFocus(index - 1);
       }
@@ -62,24 +64,23 @@ const AppConfirmCodeInput = (props) => {
           ref={(ref) => (codeInputRefs.current[i] = ref)}
           style={{
             flex: 1,
-            textAlign: 'center',
+            textAlign: "center",
             padding: 8,
             borderWidth: StyleSheet.hairlineWidth,
-            borderColor: 'black',
+            borderColor: "black",
             marginHorizontal: 6,
             ...textInputStyle,
           }}
           secureTextEntry={secureTextEntry}
-          onKeyPress={({nativeEvent}) => checkBackspace(i, nativeEvent)}
+          onKeyPress={({ nativeEvent }) => checkBackspace(i, nativeEvent)}
           underlineColorAndroid="transparent"
-          selectionColor={activeColor}
-          returnKeyType={'done'}
+          returnKeyType={"done"}
           {...props}
           autoFocus={autoFocus && i == 0}
           onChangeText={(text) => onInputCode(text, i)}
           maxLength={codeInputLength}
-          keyboardType={'number-pad'}
-        />,
+          keyboardType={"number-pad"}
+        />
       );
     }
     return codeInputs;
@@ -88,14 +89,15 @@ const AppConfirmCodeInput = (props) => {
   return (
     <View
       style={{
-        justifyContent: 'center',
-        flexDirection: 'row',
+        justifyContent: "center",
+        flexDirection: "row",
         marginVertical: 16,
         ...wrapperStyle,
-      }}>
+      }}
+    >
       {renderItem()}
     </View>
   );
 };
 
-export {AppConfirmCodeInput};
+export { AppConfirmCodeInput };
