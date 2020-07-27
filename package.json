@@ -1,0 +1,29 @@
+{
+  "name": "@rabiloo/react-native-confirm-code-input",
+  "version": "0.0.1",
+  "description": "Confirm Code Input For React Native",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rabiloo/react-native-confirm-code-input.git"
+  },
+  "author": "vokhuyetOz",
+  "license": "MIT RABILOO",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "language"
+  ],
+  "dependencies": {},
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-native": ">=0.60.0"
+  }
+}
