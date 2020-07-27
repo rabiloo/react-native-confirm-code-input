@@ -12,7 +12,6 @@ Confirm Code Input for React Native
  <kbd>
     <img src="docs/assets/codeinput.gif" style="height:300px" title="Demo" float="center">
   </kbd>
-  <em>Confirm Code Input example app.</em>
 </p>
 
 ## Usage
