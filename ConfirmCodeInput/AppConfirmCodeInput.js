@@ -108,8 +108,8 @@ AppConfirmCodeInput.propTypes = {
   textInputStyle: PropTypes.object,
   autoFocus: PropTypes.bool,
   secureTextEntry: PropTypes.bool,
-  onDone: PropTypes.bool,
-  onCodeChange: PropTypes.bool
+  onDone: PropTypes.func,
+  onCodeChange: PropTypes.func
 };
 
 export { AppConfirmCodeInput };
