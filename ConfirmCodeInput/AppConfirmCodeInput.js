@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
-import { View, TextInput, StyleSheet } from "react-native";
+import { View, TextInput, StyleSheet, ViewPropTypes } from "react-native";
+import PropTypes from "prop-types"
 
 const AppConfirmCodeInput = (props) => {
   const {
@@ -98,6 +99,17 @@ const AppConfirmCodeInput = (props) => {
       {renderItem()}
     </View>
   );
+};
+
+AppConfirmCodeInput.propTypes = {
+  codeLength: PropTypes.number,
+  codeInputLength: PropTypes.number,
+  wrapperStyle: ViewPropTypes.style,
+  textInputStyle: PropTypes.object,
+  autoFocus: PropTypes.bool,
+  secureTextEntry: PropTypes.bool,
+  onDone: PropTypes.func,
+  onCodeChange: PropTypes.func
 };
 
 export { AppConfirmCodeInput };
